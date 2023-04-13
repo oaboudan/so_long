@@ -6,7 +6,7 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:33:06 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/03/27 02:40:45 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/04/12 02:55:28 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,10 @@ void	check_map(t_vars *vars)
 	while (vars->map[++x])
 		vars->map2[x] = strdup(vars->map[x]);
 	vars->map2[x] = NULL;
-	check_valid_path(vars);
+	//check_valid_path(vars);
+	// if(ft_backt(vars->map2, vars->p_x, vars->p_y, vars->coin))
+	// 	printf("m9awad");
+	// else
+	// 	printf("mam9awadch");
+	ft_backt(vars->map2, vars->p_x, vars->p_y, vars->coin);
 }

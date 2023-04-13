@@ -6,14 +6,48 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:41:00 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/03/27 02:41:39 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/04/09 01:49:51 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
 
-void	check_valid_path(t_vars *vars)
+int    ft_backt(char **map, int i, int j, int k)
 {
-	printf("Done..!\n");	
+    static int    e;
+    static int    c;
+    int x =0;
+    int y = 0;
+    // while (map[x])
+    // {
+    //     y = 0;
+    //     while (map[x][y])
+    //     {
+    //         printf("%c",map[x][y]);
+    //         y++;
+    //     }
+    //     x++;
+    // }
+    // printf("\n \n");
+    
+    if (map[i][j] == 'E')
+    {
+        e = 1;
+        return (1);
+    }
+    else if (map[i][j] == 'C')
+        c++;
+    map[i][j] = '1';
+    if (map[i][j + 1] != '1' )
+        ft_backt(map, i, j + 1, k);
+    if (map[i + 1][j] != '1')
+        ft_backt(map, i + 1, j, k);
+    if (map[i][j - 1] != '1')
+        ft_backt(map, i, j - 1, k);
+    if (map[i - 1][j] != '1')
+        ft_backt(map, i - 1, j, k);
+    if (e && k == c)
+        return (1);
+    return (0);
 }
