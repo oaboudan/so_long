@@ -6,7 +6,7 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:13:21 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/04/09 18:03:11 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/04/15 22:41:29 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void	read_map(int fd, t_vars *vars)
 void	parse_map(int fd, t_vars *vars)
 {
 	read_map(fd, vars);
-	vars->width = strlen(vars->map[0]);
+	vars->width = ft_strlen(vars->map[0]);
 	check_map(vars);
-	// check_valid_path(vars);
 }

@@ -6,7 +6,7 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 18:03:31 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/04/13 18:31:47 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/04/16 18:13:16 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,37 @@ void	clear_map2d(char **map)
 	map = NULL;
 }
 
-void	leaks()
+void	free_map(char **map)
 {
-	system("leaks so_long");
+	int i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		map[i++] = NULL;
+	}
+	free(map);
+	map = NULL;
 }
 
-void	args_eroor(int nbr,char *av)
-{
-	int start;
-	char *ext;
-	
-	start = strlen(av);
-	if (!strnstr(av, ".ber", start) || nbr != 2)
-		ft_puterror("Error\nunvalid map file.");
-	start -= 4;
-	ext = ft_substr(av, start, 4);
-	if (strcmp(".ber", ext))
-	{
-		free(ext);
-		ft_puterror("Error:\nunvalid map file.");
-	}
-	free(ext);
-}
+// void	destroy_images(t_vars *vars)
+// {
+// 	// if (vars->ext_c)
+// 	// 	mlx_destroy_image(vars->mlx, vars->ext_c);
+// }
 
 int	end_game(t_vars *vars)
 {
-	printf("You won!\n");
-	free(vars->map);
+	ft_printf("You won!\n");
+	// if (vars->map2)
+	// 	// free_map()
+	// free(vars->map);
+	free_map(vars->map);
+	mlx_clear_window(vars->mlx, vars->win);
 	mlx_destroy_window(vars->mlx,vars->win);
+	// mlx_destroy_image()
+	// destroy_images(vars);
 	exit(0);
 }
 
@@ -72,9 +75,9 @@ void	move_player(t_vars *vars, int nr, int nc)
 	vars->map[vars->p_x][vars->p_y] = '0';
 	vars->p_x += nr;
 	vars->p_y += nc;
-	printf("moves : %d\n", ++vars->moves);
+	ft_printf("moves : %d\n", ++vars->moves);
 	mlx_clear_window(vars->mlx, vars->win);
-	put_imgs_map(13, vars);
+	put_imgs_map(vars);
 }
 
 int	game_hook(int key, t_vars *vars)
@@ -84,7 +87,7 @@ int	game_hook(int key, t_vars *vars)
 
 	if (key == 53)
 	{
-		printf("Game Quit !");
+		ft_printf("Game Quit !");
 		mlx_destroy_window(vars->mlx,vars->win);
 		exit(0);
 	}
@@ -92,60 +95,34 @@ int	game_hook(int key, t_vars *vars)
 	{
 		nr = (key == 126) * (-1) + (key == 125) * 1;
 		nc = (key == 123) * (-1) + (key == 124) * 1;
+		if (key == 124 || key == 123)
+			vars->face = key;
 		move_player(vars, nr, nc);
 	}
 	return 1;
 }
 
+// void	leaks()
+// {
+// 	system("leaks game");
+// }
+
 int main(int ac, char **av)
 {
 	t_vars	vars;
-	// atexit(leaks);
-	memset(&vars, 0, sizeof(t_vars));
+	//atexit(leaks);
+	ft_memset(&vars, 0, sizeof(t_vars));
 	args_eroor(ac,av[1]);
 	int fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		ft_puterror("invalid file\n");
 	parse_map(fd, &vars);
 	vars.mlx = mlx_init();
-	raise_ptr_error(vars.mlx);
+	raise_ptr_error(&vars, vars.mlx);
 	vars.win = mlx_new_window(vars.mlx,(vars.width - 1) * 60,vars.height * 60, SO_LONG);
-	raise_ptr_error(vars.win);
+	raise_ptr_error(&vars, vars.win);
 	import_img_assets(&vars);
-	put_imgs_map(13,&vars);
-	mlx_key_hook(vars.win, game_hook, &vars);
+	put_imgs_map(&vars);
+	mlx_hook(vars.win,2, 0, game_hook, &vars);
 	mlx_loop(vars.mlx);
 }
-
-// map[y][x] = map[y - 1][x]
-
-
-
-
-
-
-
-
-
-
-
-
-// if (ac == 2)
-// 	{
-// 		if (!strnstr(av[1], ".ber", strlen(av[1])))
-// 		{
-// 			ft_puterror("Error\nProgram must take a <.ber> file.");
-// 			return (EXIT_FAILURE);
-// 		}
-// 		int fd = open(av[1], O_RDONLY);
-// 		if (fd == -1)
-// 			return (printf("invalid file\n"), 1);
-// 		else
-// 		{
-// 			parse_map(fd, &vars);
-// 			// TODO:
-// 			// so_long(&vars);
-// 		}
-// 	}
-// 	else
-// 		printf("Error\n");

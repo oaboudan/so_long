@@ -6,26 +6,17 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:33:06 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/04/12 02:55:28 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/04/15 22:30:42 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// 1111111111111
-// 11010000000C1
-// 1000011111001
-// 1P0011E000001
-// 1111111111111
-
-
-
 int	ft_match(char *s1, char *s2)
 {
 	while (*s1)
 	{
-		// forbedin func:
-		if (!strchr(s2, *s1))
+		if (!ft_strchr(s2, *s1))
 			return (0);
 		s1++;
 	}
@@ -45,10 +36,10 @@ void	check_border_and_characters(t_vars	*vars)
 	{
 		// forb func:
 		if (!vars->map[x + 1]
-			&& (strlen(vars->map[x])) != (vars->width - 1))
+			&& (ft_strlen(vars->map[x])) != (vars->width - 1))
 			ft_puterror("error : invalid map\n");
 		if (vars->map[x + 1]
-			&& strlen(vars->map[x]) != vars->width)
+			&& ft_strlen(vars->map[x]) != vars->width)
 			ft_puterror("error : invalid map\n");
 		if (vars->map[x + 1] && 
 			(vars->map[x][0] != '1' || vars->map[x][vars->width - 2] != '1'))
@@ -86,7 +77,6 @@ void	count_characters(t_vars *vars)
 		}
 	}
 }
-
 void	check_map(t_vars *vars)
 {
 	int	x;
@@ -100,12 +90,8 @@ void	check_map(t_vars *vars)
 	if (!vars->map2)
 		ft_puterror("Alocation failed\n");
 	while (vars->map[++x])
-		vars->map2[x] = strdup(vars->map[x]);
+		vars->map2[x] = ft_strdup(vars->map[x]);
 	vars->map2[x] = NULL;
-	//check_valid_path(vars);
-	// if(ft_backt(vars->map2, vars->p_x, vars->p_y, vars->coin))
-	// 	printf("m9awad");
-	// else
-	// 	printf("mam9awadch");
-	ft_backt(vars->map2, vars->p_x, vars->p_y, vars->coin);
+	if(!ft_backt(vars->map2, vars->p_x, vars->p_y, vars->coin))
+	  	ft_puterror("unvalid map!!");
 }

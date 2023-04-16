@@ -6,12 +6,11 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:41:00 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/04/09 01:49:51 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/04/15 22:32:22 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
 
 int    ft_backt(char **map, int i, int j, int k)
 {
@@ -19,18 +18,7 @@ int    ft_backt(char **map, int i, int j, int k)
     static int    c;
     int x =0;
     int y = 0;
-    // while (map[x])
-    // {
-    //     y = 0;
-    //     while (map[x][y])
-    //     {
-    //         printf("%c",map[x][y]);
-    //         y++;
-    //     }
-    //     x++;
-    // }
-    // printf("\n \n");
-    
+
     if (map[i][j] == 'E')
     {
         e = 1;
