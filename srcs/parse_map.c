@@ -6,12 +6,11 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:13:21 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/04/15 22:41:29 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/04/17 02:44:42 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
 
 t_map	*ft_new(char *data)
 {
@@ -42,32 +41,12 @@ void	add_back(t_map **map, t_map *new)
 	itr->next = new;
 }
 
-void	clear_map_list(t_map **map)
-{
-	t_map	*itr;
-
-	if (*map || !map)
-		return ;
-	
-	while (*map)
-	{
-		itr = (*map)->next;
-		free((*map)->row);
-		(*map)->row = NULL;
-		free(*map);
-		*map = NULL;
-		*map = itr;
-	}
-	perror("Allocation failed");
-	exit(1);
-}
-
 void	read_map(int fd, t_vars *vars)
 {
 	t_map	*itr;
 	int		i;
 
-	vars->map_list =  NULL;
+	vars->map_list = NULL;
 	vars->line = get_next_line(fd);
 	while (vars->line != NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 22:25:11 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/04/15 22:40:24 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/04/17 02:43:16 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	*ft_memset(void *b, int c, size_t len)
 	}
 	return ((void *)b);
 }
+
 char	*ft_strnstr(const char *hay, const char *ndl, size_t len)
 {
 	size_t	i;
@@ -45,4 +46,51 @@ char	*ft_strnstr(const char *hay, const char *ndl, size_t len)
 		j = 0;
 	}
 	return (0);
+}
+
+void	clear_map2d(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		map[i++] = NULL;
+	}
+	free(map);
+	map = NULL;
+}
+
+void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		map[i++] = NULL;
+	}
+	free(map);
+	map = NULL;
+}
+
+void	clear_map_list(t_map **map)
+{
+	t_map	*itr;
+
+	if (*map || !map)
+		return ;
+	while (*map)
+	{
+		itr = (*map)->next;
+		free((*map)->row);
+		(*map)->row = NULL;
+		free(*map);
+		*map = NULL;
+		*map = itr;
+	}
+	perror("Allocation failed");
+	exit(1);
 }

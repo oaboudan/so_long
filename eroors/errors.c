@@ -6,7 +6,7 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 02:20:04 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/04/16 03:53:31 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:06:51 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	raise_ptr_error(t_vars *vars, void *ptr)
 {
-	if(!ptr)
-		clear_vars(vars, 1);
+	if (!ptr)
+		clear_vars(vars, "Error\nAallocation failed\n");
 }
+
 void	ft_puterror(char *err)
 {
 	while (*err)
@@ -24,20 +25,20 @@ void	ft_puterror(char *err)
 	exit(EXIT_FAILURE);
 }
 
-void	args_eroor(int nbr,char *av)
+void	args_eroor(int nbr, char *av)
 {
-	int start;
-	char *ext;
-	
+	int		start;
+	char	*ext;
+
 	start = ft_strlen(av);
 	if (!ft_strnstr(av, ".ber", start) || nbr != 2)
-		ft_puterror("Error\nunvalid map file.");
+		ft_puterror("Error\nunvalid map file.\n");
 	start -= 4;
 	ext = ft_substr(av, start, 4);
 	if (strcmp(".ber", ext))
 	{
 		free(ext);
-		ft_puterror("Error:\nunvalid map file.");
+		ft_puterror("Error:\nunvalid map file.\n");
 	}
 	free(ext);
 }

@@ -6,13 +6,13 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:02:31 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/04/16 20:35:46 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:19:52 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
-#define SO_LONG_H
-#define SO_LONG "Collect and Evade"
+# define SO_LONG_H
+# define SO_LONG "Collect and Evade"
 
 # include <stdio.h>
 # include <fcntl.h>
@@ -25,15 +25,15 @@ typedef struct s_map
 {
 	char			*row;
 	struct s_map	*next;
-} t_map;
+}	t_map;
 
 typedef struct s_img_collector
 {
-	void	*img;
-	struct s_img_collector *next;
-} t_col;
+	void					*img;
+	struct s_img_collector	*next;
+}	t_col;
 
-typedef	struct s_vars
+typedef struct s_vars
 {
 	t_col	*img_str;
 	void	*mlx;
@@ -49,10 +49,9 @@ typedef	struct s_vars
 	void	*pl_d;
 	void	*ext_o;
 	void	*ext_c;
-	/// @brief //
 	t_map	*map_list;
-	char 	*line;
-	char 	**map;
+	char	*line;
+	char	**map;
 	char	**map2;
 	int		width;
 	int		height;
@@ -64,24 +63,24 @@ typedef	struct s_vars
 	int		face;
 }	t_vars;
 
-
+int		ft_exit(t_vars *vars);
+int		game_hook(int key, t_vars *vars);
+void	check_img(t_vars *vars);
+t_col	*ft_new_img(void *data);
 void	move_player(t_vars *vars, int nr, int nc);
 void	import_img_assets(t_vars *vars);
 void	put_imgs_map(t_vars *vars);
-void	put_exit_img(t_vars *vars,int x, int y);
+void	put_exit_img(t_vars *vars, int x, int y);
 void	put_player_img(t_vars *vars, int x, int y);
-// void	raise_ptr_error(void *ptr);
-// void	raise_ptr_error(void *ptr);
 void	raise_ptr_error(t_vars *vars, void *ptr);
-void 	check_map(t_vars *vars);
+void	check_map(t_vars *vars);
 void	check_border_and_characters(t_vars	*vars);
 void	free_map(char **map);
-void	clear_vars(t_vars *vars, int code);
+void	clear_vars(t_vars *vars, char *err);
 void	destroy_images(t_vars *vars, t_col **lst, int (*del)(void *, void *));
-//void	check_valid_path(t_vars *vars);
-int    ft_backt(char **map, int i, int j, int k);
+int		ft_backt(char **map, int i, int j, int k);
 
-void	args_eroor(int nbr,char *av);
+void	args_eroor(int nbr, char *av);
 // utils:
 t_map	*ft_new(char *data);
 void	add_back(t_map **map, t_map *new);
@@ -93,6 +92,5 @@ void	parse_map(int fd, t_vars *vars);
 //libft
 void	*ft_memset(void *b, int c, size_t len);
 char	*ft_strnstr(const char *hay, const char *ndl, size_t len);
-
 
 #endif
