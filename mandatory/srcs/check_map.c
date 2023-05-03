@@ -6,7 +6,7 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:33:06 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/04/20 02:14:09 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:50:27 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,14 @@ void	check_map(t_vars *vars)
 	check_border_and_characters(vars);
 	count_characters(vars);
 	if (!vars->exit || !vars->coin || !vars->p_x)
-		ft_puterror("error\ninvalid map\n");
+		ft_puterror("Error\ninvalid map\n");
 	x = -1;
 	vars->map2 = malloc(sizeof(char *) * vars->height + 1);
 	if (!vars->map2)
-		ft_puterror("Eroor\nAlocation failed\n");
+		ft_puterror("Eroor\nAllocation failed\n");
 	while (vars->map[++x])
 		vars->map2[x] = ft_strdup(vars->map[x]);
 	vars->map2[x] = NULL;
 	if (!ft_backt(vars->map2, vars->p_x, vars->p_y, vars->coin))
-		ft_puterror("Eroor\nunvalid map!!\n");
+		ft_puterror("Eroor\ninvalid map!!\n");
 }

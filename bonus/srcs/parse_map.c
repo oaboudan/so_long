@@ -6,7 +6,7 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:13:21 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/04/20 02:43:02 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:49:54 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ void	add_back(t_map **map, t_map *new)
 	itr->next = new;
 }
 
+void	check_line(t_vars *vars)
+{
+	if (!vars->line)
+		ft_puterror("invalid map");
+}
+
 void	read_map(int fd, t_vars *vars)
 {
 	t_map	*itr;
@@ -48,6 +54,7 @@ void	read_map(int fd, t_vars *vars)
 
 	vars->map_list = NULL;
 	vars->line = get_next_line(fd);
+	check_line(vars);
 	while (vars->line != NULL)
 	{
 		add_back(&vars->map_list, ft_new(vars->line));

@@ -6,7 +6,7 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 02:20:04 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/04/17 18:06:51 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:49:46 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	args_eroor(int nbr, char *av)
 
 	start = ft_strlen(av);
 	if (!ft_strnstr(av, ".ber", start) || nbr != 2)
-		ft_puterror("Error\nunvalid map file.\n");
+		ft_puterror("Error\ninvalid map file.\n");
 	start -= 4;
 	ext = ft_substr(av, start, 4);
 	if (strcmp(".ber", ext))
 	{
 		free(ext);
-		ft_puterror("Error:\nunvalid map file.\n");
+		ft_puterror("Error:\ninvalid map file.\n");
 	}
 	free(ext);
 }

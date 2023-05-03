@@ -6,7 +6,7 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 01:33:06 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/04/20 02:44:34 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:49:38 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,5 @@ void	check_map(t_vars *vars)
 		vars->map2[x] = ft_strdup(vars->map[x]);
 	vars->map2[x] = NULL;
 	if (!ft_backt(vars->map2, vars->p_x, vars->p_y, vars->coin))
-		ft_puterror("Eroor\nunvalid map!!\n");
+		ft_puterror("Eroor\ninvalid map!!\n");
 }
