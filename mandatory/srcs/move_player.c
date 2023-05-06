@@ -6,7 +6,7 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 00:56:33 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/04/17 02:46:58 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/05/06 19:17:56 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ int	game_hook(int key, t_vars *vars)
 
 	if (key == 53)
 		clear_vars(vars, "Game Quit !\n");
-	else if (key == 126 || key == 123 || key == 124 || key == 125)
+	else if (key == 13 || key == 0 || key == 2 || key == 1)
 	{
-		nr = (key == 126) * (-1) + (key == 125) * 1;
-		nc = (key == 123) * (-1) + (key == 124) * 1;
-		if (key == 124 || key == 123)
+		nr = (key == 13) * (-1) + (key == 1) * 1;
+		nc = (key == 0) * (-1) + (key == 2) * 1;
+		if (key == 2 || key == 0)
 			vars->face = key;
 		move_player(vars, nr, nc);
 	}

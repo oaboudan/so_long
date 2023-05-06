@@ -6,7 +6,7 @@
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 22:39:04 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/04/20 02:42:34 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/05/06 19:22:19 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	put_exit_img(t_vars *vars, int x, int y)
 
 void	put_player_img(t_vars *vars, int x, int y)
 {
-	if (vars->face == 124)
+	if (vars->face == 2)
 		mlx_put_image_to_window(vars->mlx, vars->win,
 			vars->pl_r, x * 60, y * 60);
 	else

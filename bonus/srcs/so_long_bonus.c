@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oaboudan <oaboudan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 18:03:31 by oaboudan          #+#    #+#             */
-/*   Updated: 2023/04/20 02:43:08 by oaboudan         ###   ########.fr       */
+/*   Updated: 2023/05/05 20:11:12 by oaboudan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	main(int ac, char **av)
 	t_vars	vars;
 	int		fd;
 
+	if (ac != 2)
+		ft_puterror("Error\nUSAGE:<Executable> <Path/To/Map>\n");
 	ft_memset(&vars, 0, sizeof(t_vars));
 	args_eroor(ac, av[1]);
 	fd = open(av[1], O_RDONLY);
